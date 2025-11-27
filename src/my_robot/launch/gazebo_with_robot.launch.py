@@ -1,6 +1,6 @@
 from launch import LaunchDescription
-from launch.actions import ExecuteProcess, RegisterEventHandler, TimerAction
-from launch.event_handlers import OnProcessStart
+from launch.actions import ExecuteProcess, DeclareLaunchArgument, TimerAction
+from launch.substitutions import LaunchConfiguration
 from launch_ros.actions import Node
 import os
 
@@ -13,12 +13,19 @@ def generate_launch_description():
     with open(urdf_file, 'r') as infp:
         robot_description = infp.read()
 
-    # Gazebo 서버 시작
+    # World 파일 경로 인자
+    world_arg = DeclareLaunchArgument(
+        'world',
+        default_value='/home/limjaehyeon/save/wall/park_world.world',  # ✅ park_world
+        description='Full path to world file to load'
+    )
+
+    # Gazebo 서버 시작 (커스텀 월드 사용)
     gzserver = ExecuteProcess(
         cmd=['gzserver', '--verbose',
              '-s', 'libgazebo_ros_init.so',
              '-s', 'libgazebo_ros_factory.so',
-             '/opt/ros/humble/share/gazebo_ros/worlds/empty.world'],
+             LaunchConfiguration('world')],
         output='screen'
     )
 
@@ -51,7 +58,7 @@ def generate_launch_description():
                     '-file', urdf_file,
                     '-x', '0.0',
                     '-y', '0.0',
-                    '-z', '0.1'
+                    '-z', '2.0'
                 ],
                 output='screen'
             )
@@ -85,6 +92,7 @@ def generate_launch_description():
     )
 
     return LaunchDescription([
+        world_arg,
         gzserver,
         gzclient,
         robot_state_publisher,

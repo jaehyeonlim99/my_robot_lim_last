@@ -15,32 +15,32 @@
 
   <!-- Base -->
   <link name="base_footprint"/>
-  
+
   <joint name="base_joint" type="fixed">
     <parent link="base_footprint"/>
     <child link="base_link"/>
-    <origin xyz="0 0 0.010" rpy="0 0 0"/>
+    <origin xyz="0 0 0.020" rpy="0 0 0"/>
   </joint>
 
   <link name="base_link">
     <visual>
-      <origin xyz="-0.064 0 0.0" rpy="0 0 0"/>
+      <origin xyz="-0.128 0 0.0" rpy="0 0 0"/>
       <geometry>
-        <mesh filename="package://turtlebot3_description/meshes/bases/waffle_base.stl" scale="0.001 0.001 0.001"/>
+        <mesh filename="package://turtlebot3_description/meshes/bases/waffle_base.stl" scale="0.002 0.002 0.002"/>
       </geometry>
       <material name="light_black"/>
     </visual>
     <collision>
-      <origin xyz="-0.064 0 0.047" rpy="0 0 0"/>
+      <origin xyz="-0.128 0 0.094" rpy="0 0 0"/>
       <geometry>
-        <box size="0.266 0.266 0.094"/>
+        <box size="0.532 0.532 0.188"/>
       </geometry>
     </collision>
     <inertial>
-      <origin xyz="-0.03 0 0.03"/>
-      <mass value="1.5"/>
-      <inertia ixx="0.015" ixy="0.0" ixz="0.0"
-               iyy="0.015" iyz="0.0" izz="0.015"/>
+      <origin xyz="-0.06 0 0.06"/>
+      <mass value="6.0"/>
+      <inertia ixx="0.060" ixy="0.0" ixz="0.0"
+               iyy="0.060" iyz="0.0" izz="0.060"/>
     </inertial>
   </link>
 
@@ -48,7 +48,7 @@
   <joint name="wheel_left_joint" type="continuous">
     <parent link="base_link"/>
     <child link="wheel_left_link"/>
-    <origin xyz="0.0 0.144 0.023" rpy="-1.57 0 0"/>
+    <origin xyz="0.0 0.288 0.046" rpy="-1.57 0 0"/>
     <axis xyz="0 0 1"/>
   </joint>
 
@@ -56,21 +56,21 @@
     <visual>
       <origin xyz="0 0 0" rpy="1.57 0 0"/>
       <geometry>
-        <mesh filename="package://turtlebot3_description/meshes/wheels/left_tire.stl" scale="0.001 0.001 0.001"/>
+        <mesh filename="package://turtlebot3_description/meshes/wheels/left_tire.stl" scale="0.002 0.002 0.002"/>
       </geometry>
       <material name="dark"/>
     </visual>
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <cylinder length="0.018" radius="0.033"/>
+        <cylinder length="0.036" radius="0.066"/>
       </geometry>
     </collision>
     <inertial>
       <origin xyz="0 0 0"/>
-      <mass value="0.1"/>
-      <inertia ixx="0.001" ixy="0.0" ixz="0.0"
-               iyy="0.001" iyz="0.0" izz="0.001"/>
+      <mass value="0.4"/>
+      <inertia ixx="0.004" ixy="0.0" ixz="0.0"
+               iyy="0.004" iyz="0.0" izz="0.004"/>
     </inertial>
   </link>
 
@@ -78,7 +78,7 @@
   <joint name="wheel_right_joint" type="continuous">
     <parent link="base_link"/>
     <child link="wheel_right_link"/>
-    <origin xyz="0.0 -0.144 0.023" rpy="-1.57 0 0"/>
+    <origin xyz="0.0 -0.288 0.046" rpy="-1.57 0 0"/>
     <axis xyz="0 0 1"/>
   </joint>
 
@@ -86,21 +86,21 @@
     <visual>
       <origin xyz="0 0 0" rpy="1.57 0 0"/>
       <geometry>
-        <mesh filename="package://turtlebot3_description/meshes/wheels/right_tire.stl" scale="0.001 0.001 0.001"/>
+        <mesh filename="package://turtlebot3_description/meshes/wheels/right_tire.stl" scale="0.002 0.002 0.002"/>
       </geometry>
       <material name="dark"/>
     </visual>
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <cylinder length="0.018" radius="0.033"/>
+        <cylinder length="0.036" radius="0.066"/>
       </geometry>
     </collision>
     <inertial>
       <origin xyz="0 0 0"/>
-      <mass value="0.1"/>
-      <inertia ixx="0.001" ixy="0.0" ixz="0.0"
-               iyy="0.001" iyz="0.0" izz="0.001"/>
+      <mass value="0.4"/>
+      <inertia ixx="0.004" ixy="0.0" ixz="0.0"
+               iyy="0.004" iyz="0.0" izz="0.004"/>
     </inertial>
   </link>
 
@@ -108,54 +108,53 @@
   <joint name="caster_back_right_joint" type="fixed">
     <parent link="base_link"/>
     <child link="caster_back_right_link"/>
-    <origin xyz="-0.177 -0.064 -0.004" rpy="-1.57 0 0"/>
+    <origin xyz="-0.354 -0.128 -0.008" rpy="-1.57 0 0"/>
   </joint>
-  
+
   <link name="caster_back_right_link">
     <inertial>
       <origin xyz="0 0 0"/>
-      <mass value="0.01"/>
-      <inertia ixx="0.0001" ixy="0.0" ixz="0.0"
-               iyy="0.0001" iyz="0.0" izz="0.0001"/>
+      <mass value="0.04"/>
+      <inertia ixx="0.0004" ixy="0.0" ixz="0.0"
+               iyy="0.0004" iyz="0.0" izz="0.0004"/>
     </inertial>
   </link>
 
   <joint name="caster_back_left_joint" type="fixed">
     <parent link="base_link"/>
     <child link="caster_back_left_link"/>
-    <origin xyz="-0.177 0.064 -0.004" rpy="-1.57 0 0"/>
+    <origin xyz="-0.354 0.128 -0.008" rpy="-1.57 0 0"/>
   </joint>
-  
+
   <link name="caster_back_left_link">
     <inertial>
       <origin xyz="0 0 0"/>
-      <mass value="0.01"/>
-      <inertia ixx="0.0001" ixy="0.0" ixz="0.0"
-               iyy="0.0001" iyz="0.0" izz="0.0001"/>
+      <mass value="0.04"/>
+      <inertia ixx="0.0004" ixy="0.0" ixz="0.0"
+               iyy="0.0004" iyz="0.0" izz="0.0004"/>
     </inertial>
   </link>
 
-  <!-- 2D LiDAR - Collision 제거! -->
+  <!-- 2D LiDAR -->
   <joint name="scan_joint" type="fixed">
     <parent link="base_link"/>
     <child link="base_scan"/>
-    <origin xyz="-0.064 0 0.122" rpy="0 0 0"/>
+    <origin xyz="-0.128 0 0.30" rpy="0 0 0"/>
   </joint>
-  
+
   <link name="base_scan">
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <cylinder length="0.0315" radius="0.055"/>
+        <cylinder length="0.063" radius="0.11"/>
       </geometry>
       <material name="dark"/>
     </visual>
-    <!-- ✅ collision 제거! 센서끼리 감지 방지 -->
     <inertial>
       <origin xyz="0 0 0"/>
-      <mass value="0.114"/>
-      <inertia ixx="0.001" ixy="0.0" ixz="0.0"
-               iyy="0.001" iyz="0.0" izz="0.001"/>
+      <mass value="0.456"/>
+      <inertia ixx="0.004" ixy="0.0" ixz="0.0"
+               iyy="0.004" iyz="0.0" izz="0.004"/>
     </inertial>
   </link>
 
@@ -175,8 +174,8 @@
           </horizontal>
         </scan>
         <range>
-          <min>0.6</min>          <!-- 0.12 → 0.15 (카메라 피하기) -->
-          <max>3.5</max>
+          <min>1.0</min>
+          <max>5.0</max>
           <resolution>0.015</resolution>
         </range>
         <noise>
@@ -195,27 +194,26 @@
     </sensor>
   </gazebo>
 
-  <!-- Center Depth Camera - Collision 제거! -->
+  <!-- Depth Camera -->
   <joint name="depth_camera_joint" type="fixed">
     <parent link="base_link"/>
     <child link="depth_camera_link"/>
-    <origin xyz="0.073 0 0.084" rpy="0 0 1.5708"/>
+    <origin xyz="0.146 0 0.168" rpy="0 0.1 1.5708"/>
   </joint>
-  
+
   <link name="depth_camera_link">
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <box size="0.025 0.09 0.025"/>
+        <box size="0.05 0.18 0.05"/>
       </geometry>
       <material name="black"/>
     </visual>
-    <!-- ✅ collision 제거! 센서끼리 감지 방지 -->
     <inertial>
       <origin xyz="0 0 0"/>
-      <mass value="0.1"/>
-      <inertia ixx="0.0001" ixy="0.0" ixz="0.0"
-               iyy="0.0001" iyz="0.0" izz="0.0001"/>
+      <mass value="0.4"/>
+      <inertia ixx="0.0004" ixy="0.0" ixz="0.0"
+               iyy="0.0004" iyz="0.0" izz="0.0004"/>
     </inertial>
   </link>
 
@@ -230,11 +228,11 @@
           <format>R8G8B8</format>
         </image>
         <clip>
-          <near>0.05</near>
-          <far>8.0</far>
+          <near>0.1</near>
+          <far>10.0</far>
         </clip>
       </camera>
-      
+
       <plugin name="depth_camera_controller" filename="libgazebo_ros_camera.so">
         <ros>
           <namespace>/depth_camera</namespace>
@@ -246,34 +244,33 @@
         </ros>
         <camera_name>depth_camera</camera_name>
         <frame_name>depth_camera_link</frame_name>
-        <hack_baseline>0.07</hack_baseline>
-        <min_depth>0.05</min_depth>
-        <max_depth>8.0</max_depth>
+        <hack_baseline>0.14</hack_baseline>
+        <min_depth>0.1</min_depth>
+        <max_depth>10.0</max_depth>
       </plugin>
     </sensor>
   </gazebo>
 
-  <!-- 3D LiDAR (Velodyne VLP-16) - Collision 제거! -->
+  <!-- 3D LiDAR (Velodyne) -->
   <joint name="velodyne_joint" type="fixed">
     <parent link="base_link"/>
     <child link="velodyne_link"/>
-    <origin xyz="0 0 0.12" rpy="0 0 0"/>
+    <origin xyz="0 0 0.20" rpy="0 0 0"/>
   </joint>
 
   <link name="velodyne_link">
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <cylinder length="0.07" radius="0.05"/>
+        <cylinder length="0.14" radius="0.10"/>
       </geometry>
       <material name="black"/>
     </visual>
-    <!-- ✅ collision 제거! 센서끼리 감지 방지 -->
     <inertial>
       <origin xyz="0 0 0"/>
-      <mass value="0.5"/>
-      <inertia ixx="0.001" ixy="0.0" ixz="0.0"
-               iyy="0.001" iyz="0.0" izz="0.001"/>
+      <mass value="2.0"/>
+      <inertia ixx="0.004" ixy="0.0" ixz="0.0"
+               iyy="0.004" iyz="0.0" izz="0.004"/>
     </inertial>
   </link>
 
@@ -299,14 +296,14 @@
           </vertical>
         </scan>
         <range>
-          <min>0.6</min>              <!-- 0.5 → 0.15 (센서 간 거리 고려) -->
-          <max>20.0</max>              <!-- 100.0 → 20.0 (현실적 범위) -->
+          <min>1.0</min>
+          <max>30.0</max>
           <resolution>0.01</resolution>
         </range>
         <noise>
           <type>gaussian</type>
           <mean>0.0</mean>
-          <stddev>0.005</stddev>      <!-- 0.01 → 0.005 (노이즈 감소) -->
+          <stddev>0.005</stddev>
         </noise>
       </ray>
       <plugin name="gazebo_ros_velodyne" filename="libgazebo_ros_ray_sensor.so">
@@ -325,9 +322,9 @@
       <update_rate>30</update_rate>
       <left_joint>wheel_left_joint</left_joint>
       <right_joint>wheel_right_joint</right_joint>
-      <wheel_separation>0.288</wheel_separation>
-      <wheel_diameter>0.066</wheel_diameter>
-      <max_wheel_torque>20</max_wheel_torque>
+      <wheel_separation>0.576</wheel_separation>
+      <wheel_diameter>0.132</wheel_diameter>
+      <max_wheel_torque>40</max_wheel_torque>
       <max_wheel_acceleration>1.0</max_wheel_acceleration>
       <publish_odom>true</publish_odom>
       <publish_odom_tf>true</publish_odom_tf>

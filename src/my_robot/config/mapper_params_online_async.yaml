@@ -7,38 +7,40 @@ slam_toolbox:
     scan_topic: /scan_filtered
     use_scan_matching: true
     use_scan_barycenter: true
-    
-    # 레이저 범위 설정 (추가!)
-    minimum_laser_range: 0.3           # ← 이거 추가
-    maximum_laser_range: 15.0          # ← 이거 추가
 
-    # 전문가 추천: 상관관계 검색 공간
+    # 레이저 범위 설정 (중요!)
+    minimum_laser_range: 1.0           # ✅ 센서 min_range와 동일
+    maximum_laser_range: 5.0           # ✅ 센서 max_range와 동일
+
+    # 이동 거리 설정 (작게 = 더 자주 업데이트)
+    minimum_travel_distance: 0.1       # ✅ 0.2 → 0.1 (10cm마다 업데이트)
+    minimum_travel_heading: 0.1        # ✅ 0.2 → 0.1
+
+    # 상관관계 검색 공간
     correlation_search_space_dimension: 0.5
     correlation_search_space_resolution: 0.01
     correlation_search_space_smear_deviation: 0.1
-    
-    # 전문가 추천: 노이즈 감소 파라미터
-    minimum_travel_distance: 0.3
-    minimum_travel_heading: 0.3
-    
-    # 전문가 추천: 스캔 버퍼 설정
-    scan_buffer_size: 20
-    scan_buffer_maximum_scan_distance: 15.0
-    
+
+    # 스캔 버퍼 설정
+    scan_buffer_size: 30               # ✅ 20 → 30 (더 많은 데이터)
+    scan_buffer_maximum_scan_distance: 5.0
+
     # 기타 최적화
-    minimum_time_interval: 0.5
+    minimum_time_interval: 0.1         # ✅ 0.3 → 0.1 (더 자주!)
     transform_timeout: 0.2
     tf_buffer_duration: 30.0
     stack_size_to_use: 40000000
-    
-    # 루프 클로저
+
+    # 루프 클로저 (맵 보정)
     do_loop_closing: true
     loop_search_maximum_distance: 3.0
     loop_match_minimum_chain_size: 10
     loop_match_maximum_variance_coarse: 3.0
     loop_match_minimum_response_coarse: 0.35
-    
-    # 스캔 매칭
+
+    # 스캔 매칭 (정확도 향상)
     minimum_angle_penalty: 0.9
     minimum_distance_penalty: 0.5
-    use_response_expansion: true
+    
+    # 해상도
+    resolution: 0.05
